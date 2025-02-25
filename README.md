@@ -1,4 +1,4 @@
-# Vimrc
+# Idea Vimrc
 ```
 let mapleader=" "
 
