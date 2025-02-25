@@ -1,6 +1,7 @@
 # Idea Vimrc
 ```
-let mapleader=" "
+let mapleader = " "
+nnoremap <Space> <leader>
 
 """Common Settings and Defaults
 set scrolloff=5
@@ -9,6 +10,7 @@ set incsearch
 set relativenumber
 set smartcase
 map Q gq
+nmap S ysiw
 
 """ Plugins
 
@@ -34,41 +36,70 @@ set exchange
 set signature
 set ReplaceWithRegister
 set NERDTree
-set easymotion
-"set sneak
+set sneak
+set ideamarks
+set multiple-cursor
+set matchit
+set highlightedyank
 
-" --- Plugin Settings
-filetype plugin indent on
+" --- Plugin Settings filetype
+plugin indent on
 let g:exchange_no_mappings=1
 
 " Exchange
-nnoremap cx <Plug>(Exchange)
+nnoremap zx <Plug>(Exchange)
+nnoremap X <Plug>(Exchange)
+vnoremap zx <Plug>(ExchangeClear)
+vnoremap zxx <Plug>(ExchangeLine)
 
-map X <Plug>(Exchange)
-nmap cxc <Plug>(ExchangeClear)
-nmap cxx <Plug>(ExchangeLine)
+" motion Line motions
+"nnoremap <leader><leader>{char}{char} <Plug>(easymotion-overwin-s2)
 
-" JK motions: Line motions
-nnoremap s{char}{char} <Plug>(easymotion-overwin-s2)
-nmap <mapleader><mapleader>f <Plug>(easymotion-f)
-
+" -- Map IDE actions to IdeaVim
 nnoremap gt :NERDTree<CR>
-"" -- Map IDE actions to IdeaVim
-nmap [[ <Action>(MethodUp)
-nmap ]] <Action>(MethodDown)
+nnoremap [ :action MethodUp<CR>
+nnoremap ] :action MethodDown<CR>
 
+" Navigate
 nnoremap gn :action GotoNextError<CR>
 nnoremap gp :action GotoPreviousError<CR>
 nnoremap ge :action ShowErrorDescription<CR>
 nnoremap gh :action ShowHoverInfo<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap g; :action JumpToLastChange<CR>
+nnoremap ga :action Annotate<CR>
+nnoremap gf :action FindInFiles<CR>
+
+" Search
+nnoremap <leader>f :action FindUsages<CR>
+vnoremap <leader>f :action FindUsages<CR>
+inoremap <leader>f :action FindUsages<CR>
+
+" refactor
+nnoremap <leader>rf :action Refactorings.QuickListPopupAction<CR>
+nnoremap \R :action RenameElement<CR>
+nnoremap \f :action ReformatCode<CR>
+nnoremap \o :action OptimizeImports<CR>
+
+"Build and Run
+nnoremap \r :action Run<CR>
+nnoremap \d :action Debug<CR>
+nnoremap \b :action Build<CR>
+
+" git"
+nnoremap <leader>gg :action Git.Branches<CR>
+nnoremap <leader>gc :action Vcs.FileView<CR>
+noremap <leader>go :action Vcs.QuickListPopupAction<CR>
+nnoremap <leader>gf :action Git.Fetch<CR>
+nnoremap <leader>gsl :action Vcs.Show.Log<CR>
+nnoremap <leader>gss :action Git.Stash<CR>
+nnoremap <leader>gsu :action Git.Unstash<CR>
+nnoremap <leader>gsh :action Vcs.ShowTabbedFileHistory<CR>
+nnoremap <leader>glh :action LocalHistory.ShowHistory<CR>
 
 
-"" Map \r to the Reformat Code action
-nnoremap \\r :action ReformatCode<CR>
-
-"" Map <leader>d to start debug
-map \d <Action>(Debug)
-
-"" Map \b to toggle the breakpoint on the current line
-map \b <Action>(ToggleLineBreakpoint)
+"" vim shortcuts
+nmap <D-a> ggVG
+xnoremap <D-a> <Esc>ggVG
+inoremap <D-a> <Esc>ggVG
 ```
