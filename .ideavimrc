@@ -1,0 +1,102 @@
+let mapleader = " "
+nnoremap <Space> <leader>
+
+"""Common Settings and Defaults
+set scrolloff=5
+set hlsearch
+set incsearch
+set relativenumber
+set smartcase
+map Q gq
+nmap S ysiw
+
+""" Plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
+Plug 'tommcdo/vim-exchange'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'terryma/vim-multiple-cursors'
+Plug 'justinmk/vim-sneak'
+Plug "kshenoy/vim-signature"
+Plug 'preservim/nerdtree'
+
+" --- Set Plugins
+set multiple-cursors
+set vim-visual-multi
+set commentary
+set surround
+set exchange
+set signature
+set ReplaceWithRegister
+set NERDTree
+set sneak
+set ideamarks
+set multiple-cursor
+set matchit
+set highlightedyank
+
+" --- Plugin Settings filetype
+plugin indent on
+let g:exchange_no_mappings=1
+
+" Exchange
+nnoremap zx <Plug>(Exchange)
+nnoremap X <Plug>(Exchange)
+vnoremap zx <Plug>(ExchangeClear)
+vnoremap zxx <Plug>(ExchangeLine)
+
+" motion Line motions
+"nnoremap <leader><leader>{char}{char} <Plug>(easymotion-overwin-s2)
+
+" -- Map IDE actions to IdeaVim
+nnoremap gt :NERDTree<CR>
+nnoremap [ :action MethodUp<CR>
+nnoremap ] :action MethodDown<CR>
+
+" Navigate
+nnoremap gn :action GotoNextError<CR>
+nnoremap gp :action GotoPreviousError<CR>
+nnoremap ge :action ShowErrorDescription<CR>
+nnoremap gh :action ShowHoverInfo<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap g; :action JumpToLastChange<CR>
+nnoremap ga :action Annotate<CR>
+nnoremap gf :action FindInFiles<CR>
+
+" Search
+nnoremap <leader>f :action FindUsages<CR>
+vnoremap <leader>f :action FindUsages<CR>
+inoremap <leader>f :action FindUsages<CR>
+
+" refactor
+nnoremap <leader>rf :action Refactorings.QuickListPopupAction<CR>
+nnoremap \R :action RenameElement<CR>
+nnoremap \f :action ReformatCode<CR>
+nnoremap \o :action OptimizeImports<CR>
+
+"Build and Run
+nnoremap \r :action Run<CR>
+nnoremap \d :action Debug<CR>
+nnoremap \b :action Build<CR>
+
+" git"
+nnoremap <leader>gg :action Git.Branches<CR>
+nnoremap <leader>gc :action Vcs.FileView<CR>
+noremap <leader>go :action Vcs.QuickListPopupAction<CR>
+nnoremap <leader>gf :action Git.Fetch<CR>
+nnoremap <leader>gsl :action Vcs.Show.Log<CR>
+nnoremap <leader>gss :action Git.Stash<CR>
+nnoremap <leader>gsu :action Git.Unstash<CR>
+nnoremap <leader>gsh :action Vcs.ShowTabbedFileHistory<CR>
+nnoremap <leader>glh :action LocalHistory.ShowHistory<CR>
+
+
+"" vim shortcuts
+nmap <D-a> ggVG
+xnoremap <D-a> <Esc>ggVG
+inoremap <D-a> <Esc>ggVG
